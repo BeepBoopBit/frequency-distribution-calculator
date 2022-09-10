@@ -1,7 +1,6 @@
 import math
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.metrics import classification_report
 
 class MyFDT:
     def __init__(self, arrData) -> None:
@@ -40,23 +39,17 @@ class MyFDT:
         self.rf = []
         self.__calcRf()
 
+        print("Highest Value: " + str(self.highest))
+        print("Lowest value: " + str(self.lowest))
+
         df = pd.DataFrame(columns=['Class Interval', 'f', 'x', 'cb', '<cf', '>cf', 'rf'])
         for i in range(0, self.classWidth):  
             df.loc[i] = [self.classIntervalStr[i], self.classFrequency[i],
                            self.xValue[i], self.classBoundaryStr[i], self.lCf[i],
                            self.gCf[i], self.rf[i]]
         
-        
         print(df.head(10))
         
-        print(self.highest)
-        print(self.lowest)
-        
-        # get the list of keys
-        # keyList = list(self.classInterval.keys())
-
-        # get the list of values
-        # valueList = list(self.classInterval.values())
 
     def plotOGive(self):
         fig, axs = plt.subplots()
